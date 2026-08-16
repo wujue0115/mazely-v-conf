@@ -1,0 +1,16 @@
+{
+  "name": "V-CONF × Mazely",
+  "short_name": "V-CONF × Mazely",
+  "description": "Interactive 3D Vue and Vite logo mazes, generated cell by cell with Mazely for V-CONF.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#091017",
+  "theme_color": "#091017",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
