@@ -22,7 +22,7 @@ describe('Mazely visualization configuration', () => {
   it('configures the interactive 3D solution treatment', () => {
     expect(DEFAULT_VISUALIZATION_OPTIONS.interaction).toMatchObject({
       enabled: true,
-      pauseAutoRotateOnInteract: true,
+      pauseAutoRotateOnInteract: false,
     })
     expect(DEFAULT_VISUALIZATION_OPTIONS.solution).toMatchObject({
       endColor: '#ff384a',
