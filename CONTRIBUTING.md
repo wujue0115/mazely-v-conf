@@ -35,7 +35,7 @@ pnpm test:e2e --project=chromium
 ```
 
 4. Open a pull request targeting `main`.
-5. Review the Cloudflare Pages Preview deployment when the UI or deployment
+5. Review the Cloudflare Workers Preview deployment when the UI or deployment
    output changes.
 6. Merge only after the required `Quality` check passes and review feedback is
    resolved.
@@ -63,4 +63,3 @@ uses squash or rebase merges to keep a linear history.
 - [ ] Relevant local checks pass.
 - [ ] The pull request title follows Conventional Commits.
 - [ ] The Cloudflare Preview was reviewed when applicable.
-
