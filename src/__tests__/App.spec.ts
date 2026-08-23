@@ -53,7 +53,7 @@ describe('App', () => {
       'GitHub',
     ])
     expect(wrapper.find('.footnote').text()).toContain('© 2026 Wujue')
-    expect(wrapper.find('.footnote').text()).toContain('v0.1.0')
+    expect(wrapper.find('.footnote').text()).toContain('v0.2.0')
 
     const maskButtons = wrapper.findAll('.mask-switcher button')
     expect(maskButtons.map(button => button.text())).toEqual(['Vue', 'Vite'])

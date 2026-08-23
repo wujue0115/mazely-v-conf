@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-08-23
+
+### Changed
+
+- Moved visualization settings, route selection, and automatic rotation into
+  the playback panel for faster access.
+- Updated the route-selection and 3D automatic-rotation icons to make their
+  modes easier to recognize.
+- Kept automatic rotation active while selecting route points and playing the
+  solved route.
+
 ## [0.1.0] - 2026-08-18
 
 ### Added
@@ -51,5 +62,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replaced the generated Vue starter documentation with project-specific setup,
   architecture, testing, and deployment guidance.
 
-[Unreleased]: https://github.com/wujue0115/mazely-v-conf/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/wujue0115/mazely-v-conf/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/wujue0115/mazely-v-conf/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/wujue0115/mazely-v-conf/releases/tag/v0.1.0
