@@ -237,7 +237,7 @@ export const DEFAULT_VISUALIZATION_OPTIONS: MazeVisualizationOptions = {
   },
   interaction: {
     enabled: true,
-    pauseAutoRotateOnInteract: true,
+    pauseAutoRotateOnInteract: false,
     pointerMoveThreshold: 6,
   },
   solution: {

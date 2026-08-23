@@ -315,6 +315,41 @@ function assetSource(source: string): string {
           </svg>
         </button>
         <button
+          class="bar-btn bar-btn--toggle"
+          :class="{ 'is-active': routeSelectionEnabled }"
+          type="button"
+          :disabled="!rendererReady"
+          title="Route selection"
+          aria-label="Route selection"
+          :aria-pressed="routeSelectionEnabled"
+          @click="toggleRouteSelection"
+        >
+          <svg class="bar-btn__stroke bar-btn__icon--large bar-btn__icon--route" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="6.5" cy="17.5" r="2" />
+            <circle cx="17.5" cy="6.5" r="2" />
+            <path d="M8.5 17.5H11a1 1 0 0 0 1-1v-9a1 1 0 0 1 1-1h2.5" />
+          </svg>
+        </button>
+        <button
+          class="bar-btn bar-btn--toggle"
+          :class="{ 'is-active': autoRotate }"
+          type="button"
+          :disabled="!rendererReady"
+          title="Automatic rotation"
+          aria-label="Automatic rotation"
+          :aria-pressed="autoRotate"
+          @click="toggleAutoRotate"
+        >
+          <svg class="bar-btn__stroke bar-btn__icon--large" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m12 8 3 1.7v3.6L12 15l-3-1.7V9.7L12 8Z" />
+            <path d="M12 11.5 9 9.7m3 1.8 3-1.8m-3 1.8V15" />
+            <path d="M2.8 10.5c.8-3.8 4.6-6.4 9.2-6.4 5.1 0 9.2 3.1 9.2 6.4" />
+            <path d="m17.8 8.2 3.4 2.3 1.2-3.5" />
+            <path d="M21.2 13.5c-.8 3.8-4.6 6.4-9.2 6.4-5.1 0-9.2-3.1-9.2-6.4" />
+            <path d="m6.2 15.8-3.4-2.3L1.6 17" />
+          </svg>
+        </button>
+        <button
           class="bar-btn"
           type="button"
           :disabled="!rendererReady"
@@ -396,44 +431,6 @@ function assetSource(source: string): string {
               <option value="prim">Randomized Prim</option>
               <option value="kruskal">Randomized Kruskal</option>
             </select>
-          </section>
-
-          <section class="field-group">
-            <span class="micro-label">Mode</span>
-            <label
-              class="setting-switch-row"
-              :class="{ 'is-disabled': !rendererReady }"
-              for="route-selection"
-            >
-              <span>Route selection</span>
-              <input
-                id="route-selection"
-                class="setting-switch"
-                type="checkbox"
-                :checked="routeSelectionEnabled"
-                :disabled="!rendererReady"
-                @change="toggleRouteSelection"
-              >
-            </label>
-          </section>
-
-          <section class="field-group">
-            <span class="micro-label">Camera</span>
-            <label
-              class="setting-switch-row"
-              :class="{ 'is-disabled': !rendererReady }"
-              for="automatic-rotation"
-            >
-              <span>Automatic rotation</span>
-              <input
-                id="automatic-rotation"
-                class="setting-switch"
-                type="checkbox"
-                :checked="autoRotate"
-                :disabled="!rendererReady"
-                @change="toggleAutoRotate"
-              >
-            </label>
           </section>
 
           <section class="field-group">
@@ -1060,70 +1057,6 @@ function assetSource(source: string): string {
   background: var(--theme-primary);
 }
 
-.setting-switch-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 4px 0 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  color: #b9cacb;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.75rem;
-  line-height: 1.5;
-  cursor: pointer;
-  transition: color 150ms ease;
-}
-
-.setting-switch-row:hover {
-  color: #e2e2e8;
-}
-
-.setting-switch {
-  -webkit-appearance: none;
-  appearance: none;
-  position: relative;
-  width: 30px;
-  height: 18px;
-  flex: 0 0 30px;
-  margin: 0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  background: #333539;
-  cursor: pointer;
-  transition: background-color 150ms ease;
-}
-
-.setting-switch::before {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 12px;
-  height: 12px;
-  border-radius: 3px;
-  background: #b9cacb;
-  content: "";
-  transition: transform 150ms ease, background-color 150ms ease;
-}
-
-.setting-switch:checked {
-  background: color-mix(in srgb, var(--theme-primary) 20%, transparent);
-}
-
-.setting-switch:checked::before {
-  background: var(--theme-primary);
-  transform: translateX(12px);
-}
-
-.setting-switch-row.is-disabled {
-  cursor: default;
-  opacity: 0.4;
-}
-
-.setting-switch:disabled {
-  cursor: default;
-}
-
 .bar-btn:disabled {
   cursor: default;
   opacity: 0.35;
@@ -1188,6 +1121,16 @@ function assetSource(source: string): string {
   fill: currentColor;
 }
 
+.bar-btn svg.bar-btn__icon--large {
+  width: 23px;
+  height: 23px;
+}
+
+.bar-btn svg.bar-btn__icon--route {
+  width: 25px;
+  height: 25px;
+}
+
 .bar-btn .bar-btn__stroke {
   fill: none;
   stroke: currentColor;
@@ -1206,6 +1149,16 @@ function assetSource(source: string): string {
   color: var(--theme-on-primary);
   background: var(--theme-primary);
   filter: brightness(1.08);
+}
+
+.bar-btn--toggle.is-active {
+  color: var(--theme-primary);
+  background: color-mix(in srgb, var(--theme-primary) 16%, transparent);
+}
+
+.bar-btn--toggle.is-active:hover:not(:disabled) {
+  color: var(--theme-primary);
+  background: color-mix(in srgb, var(--theme-primary) 24%, transparent);
 }
 
 .playback-progress {
@@ -1383,9 +1336,7 @@ function assetSource(source: string): string {
   .hero,
   .loader span,
   .settings-dialog,
-  .bar-btn,
-  .setting-switch,
-  .setting-switch::before {
+  .bar-btn {
     animation: none;
     transition: none;
   }
